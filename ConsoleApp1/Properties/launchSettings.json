@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Go  !  ": {
+      "commandName": "Project",
+      "commandLineArgs": "3"
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    }
+  }
+}

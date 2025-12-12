@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="../Benchmarks/Benchmarks.csproj" Id="dd5e68c1-cf11-4551-a651-4e86e17363c1" />
+  <Project Path="../Test/Test.csproj" />
+  <Project Path="ConsoleApp.csproj" />
+</Solution>
