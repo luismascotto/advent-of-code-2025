@@ -3,7 +3,7 @@
 
 namespace ConsoleApp.Day1;
 
-public class Safe
+public class Safe: AoC, IAoC
 {
     const string DefaultInstructions = @"R29
 R41
@@ -4240,37 +4240,40 @@ R14";
 
     private int DialPosition { get; set; }
 
-    private string Instructions { get; set; }
 
-    public int CountLandedAtZero { get; private set; }
-    public int CountTouchedZero { get; private set; }
+    private int CountLandedAtZero { get;  set; }
+    private int CountTouchedZero { get;  set; }
 
 
-    public Safe()
-    {
-        DialPosition = 50;
-        Instructions = DefaultInstructions;
-        CountLandedAtZero = 0;
-        CountTouchedZero = 0;
-    }
+    
 
     //Allow injection of different instruction sets for testing
-    public Safe(int startPosition, string instructions)
+    public Safe(int startPosition, string instructions = "") : base(string.IsNullOrEmpty(instructions) ? DefaultInstructions : instructions)
     {
         DialPosition = startPosition;
-        Instructions = instructions;
         CountLandedAtZero = 0;
         CountTouchedZero = 0;
     }
-    public void Open()
+    public void SolveFirst()
     {
-        var instructions = Instructions.AsSpan().Split("\r\n");
-        //Console.WriteLine($"Total of {instructions.} instructions");
+        var instructions = Input.AsSpan().Split("\r\n");
 
         foreach (var turnTo in instructions)
         {
             TurnDial(instructions.Source[turnTo.Start], int.Parse(instructions.Source[(turnTo.Start.Value+1)..turnTo.End]));
         }
+        ResultList.Add(CountLandedAtZero.ToString());
+    }
+
+    public void SolveSecond()
+    {
+        var instructions = Input.AsSpan().Split("\r\n");
+
+        foreach (var turnTo in instructions)
+        {
+            TurnDial(instructions.Source[turnTo.Start], int.Parse(instructions.Source[(turnTo.Start.Value+1)..turnTo.End]));
+        }
+        ResultList.Add(CountTouchedZero.ToString());
     }
 
     private void TurnDial(char direction, int clicks)

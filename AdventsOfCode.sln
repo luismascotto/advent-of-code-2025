@@ -1,0 +1,36 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benchmarks", "Benchmarks\Benchmarks.csproj", "{2311A35A-630F-8D56-15CD-BBB525570F8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp1\ConsoleApp.csproj", "{742EC8CC-0D6E-CC56-CF86-F2B7AD863CB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{0A1E64AE-D0ED-E6EE-0445-2888C87C6BF3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2311A35A-630F-8D56-15CD-BBB525570F8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2311A35A-630F-8D56-15CD-BBB525570F8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2311A35A-630F-8D56-15CD-BBB525570F8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2311A35A-630F-8D56-15CD-BBB525570F8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{742EC8CC-0D6E-CC56-CF86-F2B7AD863CB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{742EC8CC-0D6E-CC56-CF86-F2B7AD863CB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{742EC8CC-0D6E-CC56-CF86-F2B7AD863CB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{742EC8CC-0D6E-CC56-CF86-F2B7AD863CB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A1E64AE-D0ED-E6EE-0445-2888C87C6BF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A1E64AE-D0ED-E6EE-0445-2888C87C6BF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A1E64AE-D0ED-E6EE-0445-2888C87C6BF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A1E64AE-D0ED-E6EE-0445-2888C87C6BF3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {36BBBC97-CFC4-4F1A-8D27-34EC7DF7F0DA}
+	EndGlobalSection
+EndGlobal

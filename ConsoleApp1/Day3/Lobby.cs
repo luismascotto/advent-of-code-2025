@@ -1,9 +1,9 @@
 ﻿using System;
-
+using ConsoleApp;
 
 namespace ConsoleApp.Day3;
 
-public class Lobby
+public class Lobby : AoC, IAoC
 {
     const string DefaultInput = @"2235324222232244322422312234251333343425243363443152244111122632336242225745433452452451332445546443
 4342633549426242625533823432244459548433412443246235533216334436553544934221624474453562462242374424
@@ -206,27 +206,26 @@ public class Lobby
 1332242223122322223432422223223222231321422232323322315323254332421213323312211322342222121233222222
 2122222222222321221222211222242314232222112262321222232226222422222212222222222222222221222242222212";
 
-    private string Input { get; set; }
-
     private int PackSize;
-    public List<string> ResultList { get; private set; }
 
-
-    public Lobby(int packSize, string input = "")
+    public Lobby(string input = "") : base(string.IsNullOrEmpty(input) ? DefaultInput : input)
     {
-        if (input == "")
-        {
-            Input = DefaultInput;
-        }
-        else
-        {
-            Input = input;
-        }
-        PackSize = packSize;
-        ResultList = [];
     }
 
-    public void Solve()
+    public void SolveFirst()
+    {
+        PackSize = 2;
+        Solve();
+    }
+
+
+    public void SolveSecond()
+    {
+        PackSize = 12;
+        Solve();
+    }
+
+    private void Solve()
     {
         if (PackSize < 1)
         {
@@ -239,8 +238,8 @@ public class Lobby
         {
             if (PackSize == 2)
             {
-                //ResultList.Add(GetMaxPairJoules(spanOfbatteries.Source[rngBattery]).ToString());
-                ResultList.Add(GetMaxPairJoulesMaxLeftRight(spanOfbatteries.Source[rngBattery]).ToString());
+                ResultList.Add(GetMaxPairJoules(spanOfbatteries.Source[rngBattery]).ToString());
+                //ResultList.Add(GetMaxPairJoulesMaxLeftRight(spanOfbatteries.Source[rngBattery]).ToString());
                 //ResultList.Add(GetPackJoulesMaxLeftRight(spanOfbatteries.Source[rngBattery], 2).ToString());
             }
             else
@@ -307,6 +306,5 @@ public class Lobby
 
         return packJoules;
     }
-
 
 }
