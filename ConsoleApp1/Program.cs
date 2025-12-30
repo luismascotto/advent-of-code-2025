@@ -101,6 +101,13 @@ try
             Console.WriteLine("Result list of accessible rolls: ");
             Console.WriteLine(string.Join(", ", forklift.ResultList.ToArray()));
             Console.WriteLine();
+
+            forklift = new ConsoleApp.Day4.Forklift();
+            Console.WriteLine($"Day Four, Forklift in the Printing Department..:");
+            forklift.SolveSecond();
+            Console.WriteLine("Result list of removed rolls: ");
+            Console.WriteLine(string.Join(", ", forklift.ResultList.ToArray()));
+            Console.WriteLine();
             break;
 
         default:

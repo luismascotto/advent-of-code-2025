@@ -144,46 +144,72 @@ public class Forklift : AoC, IAoC
 @@...@@.@@@@.@.@@@@.@@@@@@@@@@.@@@.@...@.@@@@@@@@.@.@@.@.@@@@.@@@.@@@@@@.@@@@.@@@@@..@.@@..@@@@.@@.@@@.@.@@..@@@.@..@@.@.@@..@@.@.@@@.@@@";
 
     private int CountAccessibleRolls;
+    private List<Roll> AccessibleRows;
+    private int CountRemovedRolls;
+
+    private char[][] PaperGrid;
 
     public Forklift(string input = "") : base(string.IsNullOrEmpty(input) ? DefaultInput : input)
     {
-        CountAccessibleRolls = 0;
+        AccessibleRows = [];
+        LoadPaperGrid();
+        if (PaperGrid == null)
+        {
+            throw new InvalidOperationException("Paper grid not loaded");
+        }
+    }
+
+    private void LoadPaperGrid()
+    {
+        PaperGrid = [.. Input.Split("\r\n",
+        StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).Select(line => line.ToCharArray())];
     }
 
     public void SolveFirst()
     {
-
         Solve();
         ResultList.Add(CountAccessibleRolls.ToString());
     }
-
-
     public void SolveSecond()
     {
-
-        Solve();
-
+        CountRemovedRolls = 0;
+        while (true)
+        {
+            Solve();
+            if (CountAccessibleRolls == 0)
+            {
+                break;
+            }
+            CountRemovedRolls += CountAccessibleRolls;
+            foreach (var roll in AccessibleRows)
+            {
+                (int line, int column) = roll;
+                PaperGrid[line][column] = '.';
+            }
+        }
+        ResultList.Add(CountRemovedRolls.ToString());
     }
-
     private void Solve()
     {
-        var paperGrid = Input.Split("\r\n", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-        for (int line = 0; line < paperGrid.Length; line++)
+        CountAccessibleRolls = 0;
+        AccessibleRows.Clear();
+        for (int line = 0; line < PaperGrid.Length; line++)
         {
-            for (int column = 0; column < paperGrid[line].Length; column++)
+            for (int column = 0; column < PaperGrid[line].Length; column++)
             {
-                if (paperGrid[line][column] == '@')
+                if (PaperGrid[line][column] == '@')
                 {
-                    if (IsAccessible(line, column, paperGrid))
+                    if (IsAccessible(line, column))
                     {
                         CountAccessibleRolls++;
+                        AccessibleRows.Add(new Roll(line, column));
                     }
                 }
             }
         }
     }
 
-    private bool IsAccessible(int line, int column, string[] paperGrid)
+    private bool IsAccessible(int line, int column)
     {
         //Count adjacent rolls
         int adjacentRolls = 0;
@@ -193,23 +219,23 @@ public class Forklift : AoC, IAoC
         // X X X
         //Check if the adjacent rolls are '@'
         //Left
-        if (column > 0 && paperGrid[line][column - 1] == '@')
+        if (column > 0 && PaperGrid[line][column - 1] == '@')
         {
             adjacentRolls++;
         }
         //Up Left
-        if (line > 0 && column > 0 && paperGrid[line - 1][column - 1] == '@')
+        if (line > 0 && column > 0 && PaperGrid[line - 1][column - 1] == '@')
         {
             adjacentRolls++;
         }
         //Up
-        if (line > 0 && paperGrid[line - 1][column] == '@')
+        if (line > 0 && PaperGrid[line - 1][column] == '@')
         {
             adjacentRolls++;
         }
 
         //Up Right
-        if (line > 0 && column < paperGrid[line].Length - 1 && paperGrid[line - 1][column + 1] == '@')
+        if (line > 0 && column < PaperGrid[line].Length - 1 && PaperGrid[line - 1][column + 1] == '@')
         {
             adjacentRolls++;
             if (adjacentRolls == 4)
@@ -219,7 +245,7 @@ public class Forklift : AoC, IAoC
         }
 
         //Right
-        if (column < paperGrid[line].Length - 1 && paperGrid[line][column + 1] == '@')
+        if (column < PaperGrid[line].Length - 1 && PaperGrid[line][column + 1] == '@')
         {
             adjacentRolls++;
             if (adjacentRolls == 4)
@@ -229,7 +255,7 @@ public class Forklift : AoC, IAoC
         }
 
         //Down Right
-        if (line < paperGrid.Length - 1 && column < paperGrid[line].Length - 1 && paperGrid[line + 1][column + 1] == '@')
+        if (line < PaperGrid.Length - 1 && column < PaperGrid[line].Length - 1 && PaperGrid[line + 1][column + 1] == '@')
         {
             adjacentRolls++;
             if (adjacentRolls == 4)
@@ -239,7 +265,7 @@ public class Forklift : AoC, IAoC
         }
 
         //Down
-        if (line < paperGrid.Length - 1 && paperGrid[line + 1][column] == '@')
+        if (line < PaperGrid.Length - 1 && PaperGrid[line + 1][column] == '@')
         {
             adjacentRolls++;
             if (adjacentRolls == 4)
@@ -249,7 +275,7 @@ public class Forklift : AoC, IAoC
         }
 
         //Down Left
-        if (line < paperGrid.Length - 1 && column > 0 && paperGrid[line + 1][column - 1] == '@')
+        if (line < PaperGrid.Length - 1 && column > 0 && PaperGrid[line + 1][column - 1] == '@')
         {
             adjacentRolls++;
             if (adjacentRolls == 4)
@@ -260,5 +286,6 @@ public class Forklift : AoC, IAoC
 
         return true;
     }
-
 }
+
+public record struct Roll(int Line, int Column);
