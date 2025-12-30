@@ -93,6 +93,16 @@ try
 
 
             break;
+
+        case 4:
+            var forklift = new ConsoleApp.Day4.Forklift();
+            Console.WriteLine($"Day Four, Forklift in the Printing Department..:");
+            forklift.SolveFirst();
+            Console.WriteLine("Result list of accessible rolls: ");
+            Console.WriteLine(string.Join(", ", forklift.ResultList.ToArray()));
+            Console.WriteLine();
+            break;
+
         default:
             Console.WriteLine($"Day {dayToRun} not implemented yet.");
             break;
