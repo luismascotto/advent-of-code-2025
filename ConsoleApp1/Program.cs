@@ -68,7 +68,7 @@ try
             var lobby = new ConsoleApp.Day3.Lobby();
             Console.WriteLine($"Day Three, Batteries in the Lobby..:");
             lobby.SolveFirst();
-            Console.WriteLine("Result list of batteries jouless (Part One, Two Pair): ");
+            Console.WriteLine("Result list of batteries joules (Part One, Two Pair): ");
             for(int i=0; i< lobby.ResultList.Count; i++)
             {
                 Console.WriteLine($"{i+1}: {lobby.ResultList[i]}");
@@ -81,7 +81,7 @@ try
             lobby = new ConsoleApp.Day3.Lobby();
             Console.WriteLine($"Day Three, Batteries in the Lobby..:");
             lobby.SolveSecond();
-            Console.WriteLine("Result list of batteries jouless (Part Two, Twelve Pack): ");
+            Console.WriteLine("Result list of batteries joules (Part Two, Twelve Pack): ");
             for(int i=0; i< lobby.ResultList.Count; i++)
             {
                 Console.WriteLine($"{i+1}: {lobby.ResultList[i]}");
